@@ -103,9 +103,32 @@ li:last-child {
     margin-bottom:20px;
 }
 
-#error {
+.error {
     margin-top:10px;
+    display: none;
+}
+.error-visible{
+    display: block;
 }
 .buttons {
     text-decoration: none;
+}
+.hide{
+    display:none;
+}
+.no-textdeco{
+    text-decoration: none;
+}
+.complete{
+    text-decoration: line-through;
+    box-shadow: none;
+    opacity: .3;
+}
+.complete-button{
+    opacity: 1;
+}
+.incomplete{
+    text-decoration: none;
+    box-shadow: 0 0 3px grey;
+    opacity: 1;
 }

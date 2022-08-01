@@ -6,11 +6,11 @@ let doContainer = [];
 
 function error() {
     let newDo = document.getElementById('do').value;
-    let error = document.getElementById('error');
+    let error = document.querySelector('.error');
     if (newDo == '') {
-        error.style.display = 'block';
+        error.classList.add('error-visible');
     } else {
-        error.style.display = 'none';
+        error.classList.add('hide');
     }
 }
 
@@ -42,7 +42,6 @@ input.addEventListener('keypress', function (e) {
 function addDo(newDo) {
     let list = document.getElementById('list');
     let entry = document.createElement('li');
-    entry.style.textDecoration = 'none';
     entry.innerText = newDo;
     doContainer.push(newDo);
     let buttonGroup = document.createElement('span');
@@ -54,7 +53,7 @@ function addDo(newDo) {
     let check = document.createElement('button');
     check.classList.add('checkBtn');
     check.innerHTML = checkIcon;
-    check.addEventListener('click', completeItem);
+    check.addEventListener('mousedown', completeItem);
     buttonGroup.appendChild(del)
     buttonGroup.appendChild(check);
     entry.appendChild(buttonGroup)
@@ -74,18 +73,10 @@ function completeItem() {
       
     let item = this.parentNode.parentNode;
     let button = document.querySelector('.buttons');
-    if (item.style.textDecoration === 'none') {
-        item.style.textDecoration = 'line-through';
-        item.style.boxShadow = 'none';
-        item.style.opacity = '0.3';
-        button.style.opacity = '1';
-    } else {
-        item.style.textDecoration = 'none';
-        item.style.boxShadow = '0 0 3px grey';
-        item.style.opacity = '1';
-    }
-    ;
-      
+    button.addEventListener('mouseup', function (e) {
+        item.classList.toggle('complete');
+        button.classList.toggle('complete-button');
+    });
     }
 
     function removeItem() {
